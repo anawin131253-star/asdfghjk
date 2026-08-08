@@ -1,0 +1,3938 @@
+```html
+<!DOCTYPE html>
+<html lang="th">
+<head><link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#e50925">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SPIDER DRIVE</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:#030305;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+
+/* =====================================================
+   BACKGROUND IMAGE
+===================================================== */
+
+#backgroundImage{
+
+    position:fixed;
+
+    left:0;
+    top:0;
+
+    width:100vw;
+    height:100vh;
+
+    object-fit:cover;
+
+    object-position:center;
+
+    z-index:-20;
+
+    transform:scale(1.03);
+
+}
+
+
+/* DARK CINEMATIC LAYER */
+
+.background-dark{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-19;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.95) 0%,
+            rgba(0,0,0,.60) 45%,
+            rgba(0,0,0,.90) 100%
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.30),
+            rgba(0,0,0,.90)
+        );
+
+}
+
+
+/* RED CINEMATIC LIGHT */
+
+.red-light{
+
+    position:fixed;
+
+    width:600px;
+    height:600px;
+
+    left:-250px;
+    top:-200px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(230,0,30,.24),
+            transparent 70%
+        );
+
+    filter:blur(30px);
+
+    z-index:-18;
+
+    pointer-events:none;
+
+}
+
+
+/* BLUE LIGHT */
+
+.blue-light{
+
+    position:fixed;
+
+    width:600px;
+    height:600px;
+
+    right:-250px;
+    bottom:-250px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,80,255,.16),
+            transparent 70%
+        );
+
+    filter:blur(40px);
+
+    z-index:-18;
+
+    pointer-events:none;
+
+}
+
+
+/* =====================================================
+   WEB EFFECT
+===================================================== */
+
+.web-lines{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-10;
+
+    pointer-events:none;
+
+    opacity:.07;
+
+}
+
+.web-lines span{
+
+    position:absolute;
+
+    width:140vw;
+
+    height:1px;
+
+    left:50%;
+    top:50%;
+
+    background:#fff;
+
+    transform-origin:center;
+
+}
+
+.web-lines span:nth-child(1){
+    transform:translate(-50%,-50%) rotate(0deg);
+}
+
+.web-lines span:nth-child(2){
+    transform:translate(-50%,-50%) rotate(30deg);
+}
+
+.web-lines span:nth-child(3){
+    transform:translate(-50%,-50%) rotate(60deg);
+}
+
+.web-lines span:nth-child(4){
+    transform:translate(-50%,-50%) rotate(90deg);
+}
+
+.web-lines span:nth-child(5){
+    transform:translate(-50%,-50%) rotate(120deg);
+}
+
+.web-lines span:nth-child(6){
+    transform:translate(-50%,-50%) rotate(150deg);
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar{
+
+    position:fixed;
+
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:270px;
+
+    padding:25px 16px;
+
+    background:
+        rgba(3,4,8,.78);
+
+    backdrop-filter:
+        blur(25px);
+
+    -webkit-backdrop-filter:
+        blur(25px);
+
+    border-right:
+        1px solid
+        rgba(255,255,255,.10);
+
+    z-index:100;
+
+    transition:.35s;
+
+}
+
+
+/* LOGO */
+
+.logo{
+
+    padding:
+        10px
+        12px
+        32px;
+
+}
+
+
+.logo-main{
+
+    font-size:24px;
+
+    font-weight:1000;
+
+    letter-spacing:-1px;
+
+}
+
+
+.logo-main .red{
+
+    color:#f10a28;
+
+    text-shadow:
+        0 0 20px
+        rgba(255,0,30,.60);
+
+}
+
+
+.logo-sub{
+
+    margin-top:6px;
+
+    color:#666;
+
+    font-size:8px;
+
+    letter-spacing:4px;
+
+}
+
+
+/* MENU */
+
+.menu-title{
+
+    color:#555;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    padding:
+        10px
+        12px;
+
+}
+
+
+.menu{
+
+    width:100%;
+
+    border:0;
+
+    outline:none;
+
+    background:transparent;
+
+    color:#888;
+
+    padding:
+        14px
+        15px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    margin-bottom:5px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    text-align:left;
+
+}
+
+
+.menu:hover{
+
+    color:#fff;
+
+    background:
+        rgba(255,255,255,.055);
+
+    transform:
+        translateX(3px);
+
+}
+
+
+.menu.active{
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(225,0,30,.95),
+            rgba(110,0,15,.85)
+        );
+
+    box-shadow:
+        0 12px 35px
+        rgba(225,0,30,.25);
+
+}
+
+
+.menu-icon{
+
+    width:25px;
+
+    text-align:center;
+
+    font-size:18px;
+
+}
+
+
+/* STORAGE */
+
+.sidebar-storage{
+
+    position:absolute;
+
+    left:16px;
+    right:16px;
+    bottom:20px;
+
+    padding:17px;
+
+    border-radius:18px;
+
+    background:
+        rgba(255,255,255,.045);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+}
+
+
+.storage-head{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#999;
+
+    font-size:10px;
+
+    margin-bottom:10px;
+
+}
+
+
+.storage-bar{
+
+    height:5px;
+
+    border-radius:20px;
+
+    background:#28282d;
+
+    overflow:hidden;
+
+}
+
+
+.storage-progress{
+
+    width:0%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d9001d,
+            #ff2947
+        );
+
+    transition:.4s;
+
+}
+
+
+.storage-text{
+
+    margin-top:8px;
+
+    color:#555;
+
+    font-size:9px;
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main{
+
+    margin-left:270px;
+
+    min-height:100vh;
+
+}
+
+
+/* =====================================================
+   TOP BAR
+===================================================== */
+
+.topbar{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:80;
+
+    height:76px;
+
+    padding:
+        0 32px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    background:
+        rgba(2,3,7,.65);
+
+    backdrop-filter:
+        blur(25px);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
+
+}
+
+
+/* SEARCH */
+
+.search-wrap{
+
+    position:relative;
+
+    width:
+        min(520px,60%);
+
+}
+
+
+.search-icon{
+
+    position:absolute;
+
+    left:17px;
+
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    color:#666;
+
+}
+
+
+.search{
+
+    width:100%;
+
+    border:1px solid
+        rgba(255,255,255,.10);
+
+    outline:none;
+
+    border-radius:30px;
+
+    padding:
+        13px
+        18px
+        13px
+        45px;
+
+    background:
+        rgba(255,255,255,.05);
+
+    color:#fff;
+
+}
+
+
+.search:focus{
+
+    border-color:#e50925;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(229,9,37,.08);
+
+}
+
+
+.profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+.profile-text{
+
+    text-align:right;
+
+}
+
+
+.profile-name{
+
+    font-size:12px;
+
+    font-weight:800;
+
+}
+
+
+.profile-status{
+
+    color:#666;
+
+    font-size:9px;
+
+    margin-top:3px;
+
+}
+
+
+.avatar{
+
+    width:43px;
+    height:43px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ee0825,
+            #71000c
+        );
+
+    box-shadow:
+        0 0 25px
+        rgba(235,0,30,.35);
+
+    font-size:20px;
+
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content{
+
+    max-width:1600px;
+
+    margin:auto;
+
+    padding:32px;
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+    position:relative;
+
+    min-height:310px;
+
+    padding:45px;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    background:
+        linear-gradient(
+            115deg,
+            rgba(120,0,15,.90),
+            rgba(190,0,25,.52),
+            rgba(0,15,50,.75)
+        );
+
+    box-shadow:
+        0 35px 100px
+        rgba(0,0,0,.50);
+
+}
+
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    right:-100px;
+    top:-200px;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    box-shadow:
+        0 0 0 50px rgba(255,255,255,.025),
+        0 0 0 100px rgba(255,255,255,.018),
+        0 0 0 150px rgba(255,255,255,.012);
+
+}
+
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.live{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:
+        7px
+        12px;
+
+    border-radius:20px;
+
+    background:
+        rgba(0,0,0,.25);
+
+    border:
+        1px solid
+        rgba(255,255,255,.14);
+
+    color:#ddd;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+}
+
+
+.live-dot{
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    background:#41ef70;
+
+    box-shadow:
+        0 0 12px
+        #41ef70;
+
+}
+
+
+.hero h1{
+
+    margin-top:18px;
+
+    font-size:
+        clamp(
+            38px,
+            5vw,
+            68px
+        );
+
+    line-height:.92;
+
+    font-weight:1000;
+
+    letter-spacing:-4px;
+
+}
+
+
+.hero p{
+
+    max-width:620px;
+
+    color:#ddd;
+
+    margin-top:16px;
+
+    line-height:1.7;
+
+    font-size:13px;
+
+}
+
+
+.hero-actions{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:9px;
+
+    margin-top:25px;
+
+}
+
+
+/* BUTTON */
+
+.btn{
+
+    border:0;
+
+    outline:none;
+
+    border-radius:12px;
+
+    padding:
+        12px
+        18px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.btn:hover{
+
+    transform:
+        translateY(-3px);
+
+}
+
+
+.btn:active{
+
+    transform:
+        scale(.97);
+
+}
+
+
+.btn-red{
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e50925,
+            #8c0011
+        );
+
+    box-shadow:
+        0 12px 30px
+        rgba(229,0,30,.25);
+
+}
+
+
+.btn-white{
+
+    background:#fff;
+
+    color:#111;
+
+}
+
+
+.btn-dark{
+
+    background:
+        rgba(0,0,0,.28);
+
+    color:#fff;
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
+
+    margin-top:18px;
+
+}
+
+
+.stat{
+
+    padding:21px;
+
+    border-radius:20px;
+
+    background:
+        rgba(5,6,10,.72);
+
+    backdrop-filter:
+        blur(18px);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    transition:.25s;
+
+}
+
+
+.stat:hover{
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(255,255,255,.15);
+
+}
+
+
+.stat-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+}
+
+
+.stat-icon{
+
+    font-size:22px;
+
+}
+
+
+.stat-code{
+
+    color:#555;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+}
+
+
+.stat-label{
+
+    margin-top:13px;
+
+    color:#777;
+
+    font-size:10px;
+
+}
+
+
+.stat-value{
+
+    margin-top:4px;
+
+    font-size:26px;
+
+    font-weight:1000;
+
+}
+
+
+/* =====================================================
+   FILE HEADER
+===================================================== */
+
+.file-head{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin:
+        35px
+        0
+        16px;
+
+}
+
+
+.file-title{
+
+    font-size:21px;
+
+    font-weight:900;
+
+}
+
+
+.file-controls{
+
+    display:flex;
+
+    gap:8px;
+
+}
+
+
+.select{
+
+    color:#fff;
+
+    background:
+        rgba(255,255,255,.05);
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    border-radius:11px;
+
+    padding:
+        10px
+        12px;
+
+    outline:none;
+
+}
+
+
+.select option{
+
+    background:#111;
+
+}
+
+
+/* =====================================================
+   FILE GRID
+===================================================== */
+
+.file-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(245px,1fr)
+        );
+
+    gap:16px;
+
+}
+
+
+.file-card{
+
+    padding:18px;
+
+    border-radius:20px;
+
+    background:
+        rgba(5,6,10,.75);
+
+    backdrop-filter:
+        blur(20px);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    transition:.25s;
+
+}
+
+
+.file-card:hover{
+
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(229,9,37,.35);
+
+    box-shadow:
+        0 25px 55px
+        rgba(0,0,0,.40);
+
+}
+
+
+.file-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+}
+
+
+.file-icon{
+
+    width:58px;
+    height:58px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:16px;
+
+    background:
+        rgba(255,255,255,.055);
+
+    font-size:28px;
+
+}
+
+
+.file-menu{
+
+    border:0;
+
+    background:none;
+
+    color:#777;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+}
+
+
+.file-name{
+
+    margin-top:17px;
+
+    font-weight:900;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+
+.file-info{
+
+    margin-top:7px;
+
+    color:#666;
+
+    font-size:10px;
+
+}
+
+
+.file-actions{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:6px;
+
+    margin-top:16px;
+
+}
+
+
+.file-btn{
+
+    border:0;
+
+    border-radius:9px;
+
+    padding:9px;
+
+    background:
+        rgba(255,255,255,.055);
+
+    color:#bbb;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.file-btn:hover{
+
+    background:#e50925;
+
+    color:#fff;
+
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty{
+
+    grid-column:1/-1;
+
+    padding:80px 20px;
+
+    text-align:center;
+
+    border:
+        1px dashed
+        rgba(255,255,255,.12);
+
+    border-radius:22px;
+
+    background:
+        rgba(255,255,255,.025);
+
+}
+
+
+.empty-icon{
+
+    font-size:65px;
+
+    opacity:.45;
+
+}
+
+
+.empty h3{
+
+    margin-top:15px;
+
+}
+
+
+.empty p{
+
+    color:#666;
+
+    margin-top:7px;
+
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:500;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(0,0,0,.82);
+
+    backdrop-filter:
+        blur(18px);
+
+}
+
+
+.modal.show{
+
+    display:flex;
+
+}
+
+
+.modal-box{
+
+    width:580px;
+
+    max-width:100%;
+
+    padding:27px;
+
+    border-radius:25px;
+
+    background:
+        rgba(12,13,18,.98);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    box-shadow:
+        0 40px 100px
+        rgba(0,0,0,.7);
+
+}
+
+
+.modal-head{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+
+.modal-title{
+
+    font-size:20px;
+
+    font-weight:900;
+
+}
+
+
+.close{
+
+    border:0;
+
+    background:none;
+
+    color:#777;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+}
+
+
+.dropzone{
+
+    padding:50px 20px;
+
+    text-align:center;
+
+    border:
+        2px dashed
+        #303139;
+
+    border-radius:19px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.dropzone:hover,
+.dropzone.drag{
+
+    border-color:#e50925;
+
+    background:
+        rgba(229,9,37,.06);
+
+}
+
+
+.drop-icon{
+
+    font-size:50px;
+
+}
+
+
+.dropzone strong{
+
+    display:block;
+
+    margin-top:10px;
+
+}
+
+
+.dropzone p{
+
+    margin-top:6px;
+
+    color:#666;
+
+    font-size:10px;
+
+}
+
+
+.file-input{
+
+    display:none;
+
+}
+
+
+.selected{
+
+    max-height:150px;
+
+    overflow:auto;
+
+    margin-top:13px;
+
+}
+
+
+.selected-item{
+
+    padding:9px 12px;
+
+    margin-top:5px;
+
+    border-radius:9px;
+
+    background:
+        rgba(255,255,255,.05);
+
+    color:#aaa;
+
+    font-size:11px;
+
+}
+
+
+.modal-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:8px;
+
+    margin-top:18px;
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    z-index:999;
+
+    padding:
+        14px
+        18px;
+
+    border-radius:13px;
+
+    background:
+        rgba(10,11,16,.97);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    box-shadow:
+        0 20px 50px
+        rgba(0,0,0,.45);
+
+    transform:
+        translateY(100px);
+
+    opacity:0;
+
+    transition:.3s;
+
+}
+
+
+.toast.show{
+
+    transform:
+        translateY(0);
+
+    opacity:1;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+.mobile-button{
+
+    display:none;
+
+    border:0;
+
+    background:none;
+
+    color:#fff;
+
+    font-size:23px;
+
+    cursor:pointer;
+
+}
+
+
+@media(max-width:1050px){
+
+    .sidebar{
+
+        transform:
+            translateX(-100%);
+
+    }
+
+    .sidebar.open{
+
+        transform:
+            translateX(0);
+
+    }
+
+    .main{
+
+        margin-left:0;
+
+    }
+
+    .mobile-button{
+
+        display:block;
+
+    }
+
+    .stats{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+}
+
+
+@media(max-width:650px){
+
+    .topbar{
+
+        padding:
+            0 15px;
+
+    }
+
+    .profile-text{
+
+        display:none;
+
+    }
+
+    .search-wrap{
+
+        width:100%;
+
+    }
+
+    .content{
+
+        padding:18px;
+
+    }
+
+    .hero{
+
+        padding:28px;
+
+    }
+
+    .hero h1{
+
+        font-size:39px;
+
+    }
+
+    .stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .file-head{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+        gap:12px;
+
+    }
+
+    .file-controls{
+
+        width:100%;
+
+    }
+
+    .select{
+
+        flex:1;
+
+    }
+
+    .file-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+</style>
+
+</head>
+<button onclick="document.documentElement.requestFullscreen();" class="btn btn-red">
+    ⛶ ขยายเต็มจอ
+</button>
+
+
+<body>
+
+
+<!-- =====================================================
+     REAL BACKGROUND IMAGE
+===================================================== -->
+
+<img
+    id="backgroundImage"
+    src="8.jpg"
+    alt=""
+>
+
+
+<div class="background-dark"></div>
+
+<div class="red-light"></div>
+
+<div class="blue-light"></div>
+
+
+<!-- WEB -->
+
+<div class="web-lines">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+>
+
+    <div class="logo">
+
+        <div class="logo-main">
+
+            🕷
+            <span class="red">
+                SPIDER
+            </span>
+            DRIVE
+
+        </div>
+
+        <div class="logo-sub">
+
+            PREMIUM FILE SYSTEM
+
+        </div>
+
+    </div>
+
+
+    <div class="menu-title">
+        WORKSPACE
+    </div>
+
+
+    <button
+        class="menu active"
+        onclick="setFilter('all',this)"
+    >
+
+        <span class="menu-icon">
+            ◈
+        </span>
+
+        ไฟล์ทั้งหมด
+
+    </button>
+
+
+    <button
+        class="menu"
+        onclick="openUpload()"
+    >
+
+        <span class="menu-icon">
+            ↑
+        </span>
+
+        อัปโหลดงาน
+
+    </button>
+
+
+    <button
+        class="menu"
+        onclick="createFolder()"
+    >
+
+        <span class="menu-icon">
+            □
+        </span>
+
+        โฟลเดอร์
+
+    </button>
+
+
+    <div class="menu-title">
+        CATEGORIES
+    </div>
+
+
+    <button
+        class="menu"
+        onclick="setFilter('document',this)"
+    >
+
+        <span class="menu-icon">
+            ▤
+        </span>
+
+        เอกสาร
+
+    </button>
+
+
+    <button
+        class="menu"
+        onclick="setFilter('image',this)"
+    >
+
+        <span class="menu-icon">
+            ▧
+        </span>
+
+        รูปภาพ
+
+    </button>
+
+
+    <button
+        class="menu"
+        onclick="setFilter('other',this)"
+    >
+
+        <span class="menu-icon">
+            ◫
+        </span>
+
+        อื่น ๆ
+
+    </button>
+
+
+    <div class="sidebar-storage">
+
+        <div class="storage-head">
+
+            <span>
+                STORAGE
+            </span>
+
+            <span id="storagePercent">
+                0%
+            </span>
+
+        </div>
+
+
+        <div class="storage-bar">
+
+            <div
+                class="storage-progress"
+                id="storageProgress"
+            ></div>
+
+        </div>
+
+
+        <div
+            class="storage-text"
+            id="storageText"
+        >
+            0 MB / 1 GB
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+<header class="topbar">
+
+
+    <div style="
+        display:flex;
+        align-items:center;
+        gap:15px;
+        flex:1;
+    ">
+
+
+        <button
+            class="mobile-button"
+            onclick="toggleSidebar()"
+        >
+            ☰
+        </button>
+
+
+        <div class="search-wrap">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+            <input
+                class="search"
+                id="search"
+                placeholder="ค้นหาไฟล์..."
+                oninput="renderFiles()"
+            >
+
+        </div>
+
+    </div>
+
+
+    <div class="profile">
+
+        <div class="profile-text">
+
+            <div class="profile-name">
+                STUDENT
+            </div>
+
+            <div class="profile-status">
+                SPIDER DRIVE ONLINE
+            </div>
+
+        </div>
+
+
+        <div class="avatar">
+            🕷
+        </div>
+
+    </div>
+
+</header>
+
+
+<section class="content">
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<div class="hero">
+
+    <div class="hero-content">
+
+        <div class="live">
+
+            <span class="live-dot"></span>
+
+            SYSTEM ONLINE
+
+        </div>
+
+
+        <h1>
+
+            YOUR FILES.<br>
+            YOUR WEB.
+
+        </h1>
+
+
+        <p>
+
+            ศูนย์รวมงานส่วนตัวของคุณ
+            จัดเก็บ ค้นหา เปิดดู และดาวน์โหลดงาน
+            ได้จากที่เดียว
+
+        </p>
+
+
+        <div class="hero-actions">
+
+            <button
+                class="btn btn-white"
+                onclick="openUpload()"
+            >
+
+                ↑
+                อัปโหลดงาน
+
+            </button>
+
+
+            <button
+                class="btn btn-dark"
+                onclick="
+                    document
+                    .getElementById('search')
+                    .focus()
+                "
+            >
+
+                ⌕
+                ค้นหาไฟล์
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
+<div class="stats">
+
+
+    <div class="stat">
+
+        <div class="stat-top">
+
+            <span class="stat-icon">
+                ◈
+            </span>
+
+            <span class="stat-code">
+                FILES
+            </span>
+
+        </div>
+
+        <div class="stat-label">
+            ไฟล์ทั้งหมด
+        </div>
+
+        <div
+            class="stat-value"
+            id="totalFiles"
+        >
+            0
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-top">
+
+            <span class="stat-icon">
+                ◉
+            </span>
+
+            <span class="stat-code">
+                STORAGE
+            </span>
+
+        </div>
+
+        <div class="stat-label">
+            พื้นที่ใช้งาน
+        </div>
+
+        <div
+            class="stat-value"
+            id="totalSize"
+        >
+            0 MB
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-top">
+
+            <span class="stat-icon">
+                ●
+            </span>
+
+            <span class="stat-code">
+                STATUS
+            </span>
+
+        </div>
+
+        <div class="stat-label">
+            ระบบ
+        </div>
+
+        <div
+            class="stat-value"
+            style="
+            color:#42ef76;
+            font-size:18px;
+            "
+        >
+            ONLINE
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-top">
+
+            <span class="stat-icon">
+                ◆
+            </span>
+
+            <span class="stat-code">
+                SECURITY
+            </span>
+
+        </div>
+
+        <div class="stat-label">
+            การจัดเก็บ
+        </div>
+
+        <div
+            class="stat-value"
+            style="
+            font-size:18px;
+            "
+        >
+            PROTECTED
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FILE HEADER
+===================================================== -->
+
+<div class="file-head">
+
+    <div class="file-title">
+        งานของฉัน
+    </div>
+
+
+    <div class="file-controls">
+
+        <select
+            class="select"
+            id="sort"
+            onchange="sortFiles()"
+        >
+
+            <option value="new">
+                ล่าสุด
+            </option>
+
+            <option value="old">
+                เก่าสุด
+            </option>
+
+            <option value="name">
+                ชื่อ
+            </option>
+
+            <option value="size">
+                ขนาด
+            </option>
+
+        </select>
+
+
+        <button
+            class="btn btn-red"
+            onclick="openUpload()"
+        >
+
+            + เพิ่มงาน
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- FILE GRID -->
+
+<div
+    class="file-grid"
+    id="fileGrid"
+></div>
+
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     UPLOAD MODAL
+===================================================== -->
+
+<div
+    class="modal"
+    id="uploadModal"
+>
+
+    <div class="modal-box">
+
+
+        <div class="modal-head">
+
+            <div class="modal-title">
+                🕷 เพิ่มงาน
+            </div>
+
+
+            <button
+                class="close"
+                onclick="closeUpload()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            class="dropzone"
+            id="dropzone"
+            onclick="
+                document
+                .getElementById('fileInput')
+                .click()
+            "
+            ondragover="dragOver(event)"
+            ondragleave="dragLeave()"
+            ondrop="dropFile(event)"
+        >
+
+            <div class="drop-icon">
+                ↑
+            </div>
+
+
+            <strong>
+                เลือกไฟล์เพื่อเพิ่มงาน
+            </strong>
+
+
+            <p>
+                คลิก หรือลากไฟล์มาวาง
+            </p>
+
+
+            <p>
+                PDF • DOCX • PPTX • XLSX • JPG • PNG • ZIP
+            </p>
+
+        </div>
+
+
+        <input
+            type="file"
+            id="fileInput"
+            class="file-input"
+            multiple
+            onchange="selectFiles(this.files)"
+        >
+
+
+        <div
+            class="selected"
+            id="selectedFiles"
+        ></div>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="btn btn-dark"
+                onclick="closeUpload()"
+            >
+                ยกเลิก
+            </button>
+
+
+            <button
+                class="btn btn-red"
+                onclick="saveSelectedFiles()"
+            >
+                💾 บันทึกงาน
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+<script>
+
+/* =====================================================
+   DATABASE
+===================================================== */
+
+const DB_NAME =
+    "SPIDER_DRIVE_V2";
+
+const DB_VERSION = 1;
+
+const STORE_NAME =
+    "files";
+
+let database;
+
+let files = [];
+
+let selectedFiles = [];
+
+let currentFilter = "all";
+
+
+/* =====================================================
+   OPEN DATABASE
+===================================================== */
+
+function openDatabase(){
+
+    return new Promise(
+        (resolve,reject)=>{
+
+            const request =
+                indexedDB.open(
+                    DB_NAME,
+                    DB_VERSION
+                );
+
+
+            request.onupgradeneeded =
+                event=>{
+
+                    const db =
+                        event.target.result;
+
+
+                    if(
+                        !db.objectStoreNames
+                        .contains(STORE_NAME)
+                    ){
+
+                        db.createObjectStore(
+                            STORE_NAME,
+                            {
+                                keyPath:"id"
+                            }
+                        );
+
+                    }
+
+                };
+
+
+            request.onsuccess =
+                event=>{
+
+                    database =
+                        event.target.result;
+
+                    resolve();
+
+                };
+
+
+            request.onerror =
+                ()=>{
+                    reject(
+                        request.error
+                    );
+                };
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   GET FILES
+===================================================== */
+
+function getFiles(){
+
+    return new Promise(
+        (resolve,reject)=>{
+
+            const transaction =
+                database.transaction(
+                    STORE_NAME,
+                    "readonly"
+                );
+
+
+            const store =
+                transaction
+                .objectStore(
+                    STORE_NAME
+                );
+
+
+            const request =
+                store.getAll();
+
+
+            request.onsuccess =
+                ()=>{
+                    resolve(
+                        request.result
+                    );
+                };
+
+
+            request.onerror =
+                ()=>{
+                    reject(
+                        request.error
+                    );
+                };
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ADD FILE
+===================================================== */
+
+function addFile(file){
+
+    return new Promise(
+        (resolve,reject)=>{
+
+            const transaction =
+                database.transaction(
+                    STORE_NAME,
+                    "readwrite"
+                );
+
+
+            const store =
+                transaction
+                .objectStore(
+                    STORE_NAME
+                );
+
+
+            const item={
+
+                id:
+                    crypto.randomUUID(),
+
+                name:
+                    file.name,
+
+                type:
+                    file.type,
+
+                size:
+                    file.size,
+
+                date:
+                    new Date().toISOString(),
+
+                blob:
+                    file
+
+            };
+
+
+            const request =
+                store.add(item);
+
+
+            request.onsuccess =
+                ()=>resolve();
+
+
+            request.onerror =
+                ()=>{
+                    reject(
+                        request.error
+                    );
+                };
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   DELETE FILE
+===================================================== */
+
+function deleteFile(id){
+
+    return new Promise(
+        (resolve,reject)=>{
+
+            const transaction =
+                database.transaction(
+                    STORE_NAME,
+                    "readwrite"
+                );
+
+
+            const store =
+                transaction
+                .objectStore(
+                    STORE_NAME
+                );
+
+
+            const request =
+                store.delete(id);
+
+
+            request.onsuccess =
+                ()=>resolve();
+
+
+            request.onerror =
+                ()=>{
+                    reject(
+                        request.error
+                    );
+                };
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   INIT
+===================================================== */
+
+async function init(){
+
+    try{
+
+        await openDatabase();
+
+        files =
+            await getFiles();
+
+        renderFiles();
+
+        updateStats();
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        showToast(
+            "ไม่สามารถเปิดฐานข้อมูลได้"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   UPLOAD
+===================================================== */
+
+function openUpload(){
+
+    selectedFiles=[];
+
+    document
+        .getElementById(
+            "selectedFiles"
+        )
+        .innerHTML="";
+
+
+    document
+        .getElementById(
+            "uploadModal"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+function closeUpload(){
+
+    document
+        .getElementById(
+            "uploadModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+/* =====================================================
+   SELECT
+===================================================== */
+
+function selectFiles(list){
+
+    selectedFiles =
+        Array.from(list);
+
+    renderSelected();
+
+}
+
+
+function renderSelected(){
+
+    const box =
+        document.getElementById(
+            "selectedFiles"
+        );
+
+
+    box.innerHTML="";
+
+
+    selectedFiles.forEach(
+        file=>{
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "selected-item";
+
+
+            item.textContent =
+                "📄 "
+                +
+                file.name
+                +
+                " • "
+                +
+                formatSize(
+                    file.size
+                );
+
+
+            box.appendChild(item);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   DRAG DROP
+===================================================== */
+
+function dragOver(event){
+
+    event.preventDefault();
+
+    document
+        .getElementById(
+            "dropzone"
+        )
+        .classList.add(
+            "drag"
+        );
+
+}
+
+
+function dragLeave(){
+
+    document
+        .getElementById(
+            "dropzone"
+        )
+        .classList.remove(
+            "drag"
+        );
+
+}
+
+
+function dropFile(event){
+
+    event.preventDefault();
+
+    dragLeave();
+
+    selectFiles(
+        event
+        .dataTransfer
+        .files
+    );
+
+}
+
+
+/* =====================================================
+   SAVE SELECTED
+===================================================== */
+
+async function saveSelectedFiles(){
+
+    if(
+        selectedFiles.length===0
+    ){
+
+        showToast(
+            "⚠️ กรุณาเลือกไฟล์"
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        for(
+            const file
+            of selectedFiles
+        ){
+
+            await addFile(file);
+
+        }
+
+
+        files =
+            await getFiles();
+
+
+        renderFiles();
+
+        updateStats();
+
+        closeUpload();
+
+
+        showToast(
+            "🕷 บันทึกงานเรียบร้อย"
+        );
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        showToast(
+            "❌ บันทึกไฟล์ไม่สำเร็จ"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function renderFiles(){
+
+    const grid =
+        document.getElementById(
+            "fileGrid"
+        );
+
+
+    let result =
+        [...files];
+
+
+    /* FILTER */
+
+    if(
+        currentFilter==="image"
+    ){
+
+        result =
+            result.filter(
+                file=>
+                    file.type
+                    .startsWith(
+                        "image/"
+                    )
+            );
+
+    }
+
+
+    if(
+        currentFilter==="document"
+    ){
+
+        result =
+            result.filter(
+                file=>{
+
+                    return (
+
+                        file.type.includes("pdf")
+                        ||
+                        file.type.includes("word")
+                        ||
+                        file.type.includes("document")
+                        ||
+                        file.type.includes("sheet")
+                        ||
+                        file.type.includes("excel")
+                        ||
+                        file.type.includes("presentation")
+                        ||
+                        file.type.includes("powerpoint")
+
+                    );
+
+                }
+            );
+
+    }
+
+
+    if(
+        currentFilter==="other"
+    ){
+
+        result =
+            result.filter(
+                file=>{
+
+                    return (
+
+                        !file.type.startsWith("image/")
+                        &&
+                        !file.type.includes("pdf")
+                        &&
+                        !file.type.includes("word")
+                        &&
+                        !file.type.includes("document")
+                        &&
+                        !file.type.includes("sheet")
+                        &&
+                        !file.type.includes("excel")
+                        &&
+                        !file.type.includes("presentation")
+                        &&
+                        !file.type.includes("powerpoint")
+
+                    );
+
+                }
+            );
+
+    }
+
+
+    /* SEARCH */
+
+    const search =
+        document
+        .getElementById(
+            "search"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    if(search){
+
+        result =
+            result.filter(
+                file=>
+                    file.name
+                    .toLowerCase()
+                    .includes(search)
+            );
+
+    }
+
+
+    grid.innerHTML="";
+
+
+    if(
+        result.length===0
+    ){
+
+        grid.innerHTML=`
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🕸️
+                </div>
+
+                <h3>
+                    ยังไม่มีงาน
+                </h3>
+
+                <p>
+                    กด "เพิ่มงาน" เพื่อเริ่มเก็บไฟล์
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    result.forEach(
+        file=>{
+
+            const card =
+                document
+                .createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "file-card";
+
+
+            card.innerHTML=`
+
+                <div class="file-top">
+
+                    <div class="file-icon">
+                        ${getIcon(file)}
+                    </div>
+
+                    <button
+                        class="file-menu"
+                        onclick="
+                            removeFile('${file.id}')
+                        "
+                    >
+                        ⋮
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="file-name"
+                    title="${escapeHTML(file.name)}"
+                >
+                    ${escapeHTML(file.name)}
+                </div>
+
+
+                <div class="file-info">
+
+                    ${formatSize(file.size)}
+                    •
+                    ${formatDate(file.date)}
+
+                </div>
+
+
+                <div class="file-actions">
+
+                    <button
+                        class="file-btn"
+                        onclick="
+                            previewFile('${file.id}')
+                        "
+                    >
+                        👁
+                    </button>
+
+                    <button
+                        class="file-btn"
+                        onclick="
+                            downloadFile('${file.id}')
+                        "
+                    >
+                        ↓
+                    </button>
+
+                    <button
+                        class="file-btn"
+                        onclick="
+                            removeFile('${file.id}')
+                        "
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            `;
+
+
+            grid.appendChild(card);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+function setFilter(
+    filter,
+    button
+){
+
+    currentFilter =
+        filter;
+
+
+    document
+        .querySelectorAll(
+            ".menu"
+        )
+        .forEach(
+            item=>{
+                item.classList
+                    .remove(
+                        "active"
+                    );
+            }
+        );
+
+
+    if(button){
+
+        button.classList.add(
+            "active"
+        );
+
+    }
+
+
+    renderFiles();
+
+}
+
+
+/* =====================================================
+   SORT
+===================================================== */
+
+function sortFiles(){
+
+    const mode =
+        document
+        .getElementById(
+            "sort"
+        )
+        .value;
+
+
+    if(mode==="new"){
+
+        files.sort(
+            (a,b)=>
+                new Date(b.date)
+                -
+                new Date(a.date)
+        );
+
+    }
+
+
+    if(mode==="old"){
+
+        files.sort(
+            (a,b)=>
+                new Date(a.date)
+                -
+                new Date(b.date)
+        );
+
+    }
+
+
+    if(mode==="name"){
+
+        files.sort(
+            (a,b)=>
+                a.name.localeCompare(
+                    b.name,
+                    "th"
+                )
+        );
+
+    }
+
+
+    if(mode==="size"){
+
+        files.sort(
+            (a,b)=>
+                b.size-a.size
+        );
+
+    }
+
+
+    renderFiles();
+
+}
+
+
+/* =====================================================
+   PREVIEW
+===================================================== */
+
+function previewFile(id){
+
+    const file =
+        files.find(
+            item=>
+                item.id===id
+        );
+
+
+    if(!file)
+        return;
+
+
+    const url =
+        URL.createObjectURL(
+            file.blob
+        );
+
+
+    window.open(
+        url,
+        "_blank"
+    );
+
+
+    setTimeout(
+        ()=>{
+            URL.revokeObjectURL(url);
+        },
+        60000
+    );
+
+}
+
+
+/* =====================================================
+   DOWNLOAD
+===================================================== */
+
+function downloadFile(id){
+
+    const file =
+        files.find(
+            item=>
+                item.id===id
+        );
+
+
+    if(!file)
+        return;
+
+
+    const url =
+        URL.createObjectURL(
+            file.blob
+        );
+
+
+    const link =
+        document.createElement(
+            "a"
+        );
+
+
+    link.href=url;
+
+    link.download=file.name;
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    link.remove();
+
+
+    setTimeout(
+        ()=>{
+            URL.revokeObjectURL(url);
+        },
+        1000
+    );
+
+
+    showToast(
+        "⬇ กำลังดาวน์โหลด"
+    );
+
+}
+
+
+/* =====================================================
+   DELETE
+===================================================== */
+
+async function removeFile(id){
+
+    const file =
+        files.find(
+            item=>
+                item.id===id
+        );
+
+
+    if(!file)
+        return;
+
+
+    const confirmDelete =
+        confirm(
+            "ต้องการลบไฟล์นี้หรือไม่?\n\n"
+            +
+            file.name
+        );
+
+
+    if(!confirmDelete)
+        return;
+
+
+    try{
+
+        await deleteFile(id);
+
+        files =
+            await getFiles();
+
+        renderFiles();
+
+        updateStats();
+
+        showToast(
+            "ลบไฟล์แล้ว"
+        );
+
+    }
+    catch(error){
+
+        showToast(
+            "ลบไฟล์ไม่สำเร็จ"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CREATE FOLDER
+===================================================== */
+
+function createFolder(){
+
+    const name =
+        prompt(
+            "ตั้งชื่อโฟลเดอร์"
+        );
+
+
+    if(!name)
+        return;
+
+
+    showToast(
+        "📁 สร้างโฟลเดอร์: "
+        +
+        name
+        +
+        " (ระบบโฟลเดอร์จะเพิ่มในรุ่นถัดไป)"
+    );
+
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+function updateStats(){
+
+    const totalFiles =
+        files.length;
+
+
+    const totalBytes =
+        files.reduce(
+            (sum,file)=>
+                sum+file.size,
+            0
+        );
+
+
+    document
+        .getElementById(
+            "totalFiles"
+        )
+        .textContent =
+        totalFiles;
+
+
+    document
+        .getElementById(
+            "totalSize"
+        )
+        .textContent =
+        formatSize(
+            totalBytes
+        );
+
+
+    const max =
+        1024*
+        1024*
+        1024;
+
+
+    const percent =
+        Math.min(
+            100,
+            (totalBytes/max)*100
+        );
+
+
+    document
+        .getElementById(
+            "storageProgress"
+        )
+        .style.width =
+        percent+"%";
+
+
+    document
+        .getElementById(
+            "storagePercent"
+        )
+        .textContent =
+        percent.toFixed(1)
+        +
+        "%";
+
+
+    document
+        .getElementById(
+            "storageText"
+        )
+        .textContent =
+        formatSize(totalBytes)
+        +
+        " / 1 GB";
+
+}
+
+
+/* =====================================================
+   ICON
+===================================================== */
+
+function getIcon(file){
+
+    const type =
+        file.type || "";
+
+
+    if(
+        type.includes("pdf")
+    )
+        return "📕";
+
+
+    if(
+        type.includes("word") ||
+        type.includes("document")
+    )
+        return "📘";
+
+
+    if(
+        type.includes("excel") ||
+        type.includes("sheet")
+    )
+        return "📗";
+
+
+    if(
+        type.includes("powerpoint") ||
+        type.includes("presentation")
+    )
+        return "📙";
+
+
+    if(
+        type.startsWith("image/")
+    )
+        return "🖼️";
+
+
+    if(
+        type.startsWith("video/")
+    )
+        return "🎬";
+
+
+    if(
+        type.startsWith("audio/")
+    )
+        return "🎵";
+
+
+    if(
+        type.includes("zip")
+    )
+        return "🗜️";
+
+
+    return "📄";
+
+}
+
+
+/* =====================================================
+   FORMAT SIZE
+===================================================== */
+
+function formatSize(bytes){
+
+    if(!bytes)
+        return "0 B";
+
+
+    const units=[
+        "B",
+        "KB",
+        "MB",
+        "GB"
+    ];
+
+
+    const index =
+        Math.floor(
+            Math.log(bytes)
+            /
+            Math.log(1024)
+        );
+
+
+    return (
+        parseFloat(
+            (
+                bytes/
+                Math.pow(
+                    1024,
+                    index
+                )
+            ).toFixed(2)
+        )
+        +
+        " "
+        +
+        units[index]
+    );
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function formatDate(date){
+
+    return new Date(date)
+        .toLocaleDateString(
+            "th-TH",
+            {
+                day:"2-digit",
+                month:"short",
+                year:"numeric"
+            }
+        );
+
+}
+
+
+/* =====================================================
+   ESCAPE
+===================================================== */
+
+function escapeHTML(text){
+
+    return String(text)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        window.toastTimer
+    );
+
+
+    window.toastTimer =
+        setTimeout(
+            ()=>{
+                toast.classList.remove(
+                    "show"
+                );
+            },
+            2500
+        );
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+function toggleSidebar(){
+
+    document
+        .getElementById(
+            "sidebar"
+        )
+        .classList.toggle(
+            "open"
+        );
+
+}
+
+
+/* =====================================================
+   BACKGROUND CHECK
+===================================================== */
+
+document
+    .getElementById(
+        "backgroundImage"
+    )
+    .addEventListener(
+        "error",
+        ()=>{
+            console.warn(
+                "ไม่พบไฟล์ 9.jpg"
+            );
+
+            showToast(
+                "⚠️ ไม่พบ 9.jpg — ตรวจสอบชื่อไฟล์"
+            );
+        }
+    );
+
+
+document
+    .getElementById(
+        "backgroundImage"
+    )
+    .addEventListener(
+        "load",
+        ()=>{
+            console.log(
+                "SPIDER DRIVE: Background loaded"
+            );
+        }
+    );
+
+
+/* =====================================================
+   START
+===================================================== */
+
+init();
+async function init(){
+        try{
+            await openDatabase();
+            files = await getFiles();
+            renderFiles();
+            updateStats();
+        }
+        catch(error){
+            console.error(error);
+            showToast("เกิดข้อผิดพลาดในการโหลดระบบฐานข้อมูล");
+        }
+    }
+
+    /* =====================================================
+       UI & SIDEBAR FUNCTIONS
+    ===================================================== */
+    function toggleSidebar() {
+        document.getElementById('sidebar').classList.toggle('open');
+    }
+
+    function openUpload() {
+        document.getElementById('uploadModal').classList.add('show');
+        selectedFiles = [];
+        renderSelectedFiles();
+    }
+
+    function closeUpload() {
+        document.getElementById('uploadModal').classList.remove('show');
+        document.getElementById('fileInput').value = "";
+    }
+
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.innerText = msg;
+        toast.classList.add('show');
+        
+        // ซ่อนข้อความหลังจากผ่านไป 3 วินาที
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    function createFolder() {
+        showToast("ฟีเจอร์สร้างโฟลเดอร์กำลังมาในอัปเดตหน้า 🕷");
+    }
+
+    /* =====================================================
+       DRAG & DROP / FILE SELECTION
+    ===================================================== */
+    function dragOver(event) {
+        event.preventDefault();
+        document.getElementById('dropzone').classList.add('drag');
+    }
+
+    function dragLeave() {
+        document.getElementById('dropzone').classList.remove('drag');
+    }
+
+    function dropFile(event) {
+        event.preventDefault();
+        dragLeave();
+        if (event.dataTransfer.files.length > 0) {
+            selectFiles(event.dataTransfer.files);
+        }
+    }
+
+    function selectFiles(inputFiles) {
+        for (let i = 0; i < inputFiles.length; i++) {
+            selectedFiles.push(inputFiles[i]);
+        }
+        renderSelectedFiles();
+    }
+
+    function renderSelectedFiles() {
+        const container = document.getElementById('selectedFiles');
+        container.innerHTML = "";
+        
+        selectedFiles.forEach((file) => {
+            const item = document.createElement('div');
+            item.className = 'selected-item';
+            item.innerText = file.name + " (" + formatBytes(file.size) + ")";
+            container.appendChild(item);
+        });
+    }
+
+    /* =====================================================
+       SAVE, DELETE, DOWNLOAD FILES
+    ===================================================== */
+    async function saveSelectedFiles() {
+        if (selectedFiles.length === 0) {
+            showToast("กรุณาเลือกไฟล์ก่อนบันทึก!");
+            return;
+        }
+
+        showToast("กำลังอัปโหลดไฟล์สู่ SPIDER DRIVE...");
+        
+        for (let file of selectedFiles) {
+            await addFile(file);
+        }
+        
+        files = await getFiles();
+        renderFiles();
+        updateStats();
+        closeUpload();
+        showToast("บันทึกไฟล์เสร็จสมบูรณ์ 🕷");
+    }
+
+    async function removeFile(id) {
+        if(confirm("คุณแน่ใจหรือไม่ว่าต้องการลบไฟล์นี้ทิ้งถาวร?")) {
+            await deleteFile(id);
+            files = await getFiles();
+            renderFiles();
+            updateStats();
+            showToast("ลบไฟล์เรียบร้อยแล้ว");
+        }
+    }
+
+    function downloadFile(id) {
+        const fileData = files.find(f => f.id === id);
+        if(!fileData) return;
+        
+        const url = URL.createObjectURL(fileData.blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileData.name;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    /* =====================================================
+       FILTER, SORT & RENDER FILE GRID
+    ===================================================== */
+    function setFilter(type, buttonElement) {
+        currentFilter = type;
+        
+        // ลบคลาส active จากเมนูอื่น แล้วใส่ให้ปุ่มที่กด
+        const menus = document.querySelectorAll('.menu');
+        menus.forEach(menu => menu.classList.remove('active'));
+        buttonElement.classList.add('active');
+        
+        renderFiles();
+    }
+
+    function sortFiles() {
+        renderFiles();
+    }
+
+    function getCategory(type) {
+        if (type.includes('image')) return 'image';
+        if (type.includes('pdf') || type.includes('document') || type.includes('text') || type.includes('msword')) return 'document';
+        return 'other';
+    }
+
+    function formatBytes(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    function renderFiles() {
+        const grid = document.getElementById('fileGrid');
+        const searchKeyword = document.getElementById('search').value.toLowerCase();
+        const sortMode = document.getElementById('sort').value;
+        
+        grid.innerHTML = "";
+        
+        // 1. กรองไฟล์ (Filter & Search)
+        let filteredFiles = files.filter(f => {
+            const matchSearch = f.name.toLowerCase().includes(searchKeyword);
+            const category = getCategory(f.type);
+            const matchFilter = (currentFilter === 'all') || (category === currentFilter);
+            return matchSearch && matchFilter;
+        });
+        
+        // 2. จัดเรียงไฟล์ (Sort)
+        if (sortMode === 'new') filteredFiles.sort((a,b) => new Date(b.date) - new Date(a.date));
+        if (sortMode === 'old') filteredFiles.sort((a,b) => new Date(a.date) - new Date(b.date));
+        if (sortMode === 'name') filteredFiles.sort((a,b) => a.name.localeCompare(b.name));
+        if (sortMode === 'size') filteredFiles.sort((a,b) => b.size - a.size);
+        
+        // 3. แสดงผล (Render)
+        if (filteredFiles.length === 0) {
+            grid.innerHTML = `
+                <div class="empty">
+                    <div class="empty-icon">🕸</div>
+                    <h3>ว่างเปล่า</h3>
+                    <p>ไม่พบไฟล์ที่คุณค้นหา หรือยังไม่ได้อัปโหลดงาน</p>
+                </div>
+            `;
+            return;
+        }
+        
+        filteredFiles.forEach(file => {
+            const dateStr = new Date(file.date).toLocaleDateString('th-TH');
+            const card = document.createElement('div');
+            card.className = 'file-card';
+            
+            // เลือกไอคอนตามประเภทไฟล์
+            let icon = "📄";
+            if (file.type.includes('image')) icon = "🖼";
+            else if (file.type.includes('zip') || file.type.includes('rar')) icon = "📦";
+            else if (file.type.includes('pdf')) icon = "📕";
+            
+            card.innerHTML = `
+                <div class="file-top">
+                    <div class="file-icon">${icon}</div>
+                    <button class="file-menu" onclick="removeFile('${file.id}')" title="ลบไฟล์">🗑</button>
+                </div>
+                <div class="file-name" title="${file.name}">${file.name}</div>
+                <div class="file-info">${formatBytes(file.size)} • ${dateStr}</div>
+                <div class="file-actions" style="grid-template-columns: 1fr;">
+                    <button class="file-btn" style="width: 100%;" onclick="downloadFile('${file.id}')" title="ดาวน์โหลด">
+                        ↓ ดาวน์โหลด
+                    </button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    /* =====================================================
+       UPDATE STATS (Storage limits)
+    ===================================================== */
+    function updateStats() {
+        document.getElementById('totalFiles').innerText = files.length;
+        
+        let totalBytes = files.reduce((sum, f) => sum + f.size, 0);
+        document.getElementById('totalSize').innerText = formatBytes(totalBytes);
+        
+        // สมมติว่าพื้นที่จำลองคือ 1 GB (1,073,741,824 Bytes)
+        const MAX_SIZE = 1073741824; 
+        let percent = (totalBytes / MAX_SIZE) * 100;
+        if (percent > 100) percent = 100;
+        
+        document.getElementById('storageProgress').style.width = percent + "%";
+        document.getElementById('storagePercent').innerText = percent.toFixed(1) + "%";
+        document.getElementById('storageText').innerText = formatBytes(totalBytes) + " / 1 GB";
+    }
+
+    // เริ่มระบบเมื่อโหลดหน้าเว็บเสร็จ
+    window.onload = init;
+
+</script>
+</body>
+</html>
+
+</script>
+
+</body>
+</html>

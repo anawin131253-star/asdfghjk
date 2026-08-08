@@ -1,0 +1,15 @@
+{
+  "name": "Spider Drive",
+  "short_name": "SpiderDrive",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#030305",
+  "theme_color": "#e50925",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
